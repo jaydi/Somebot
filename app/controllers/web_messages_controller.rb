@@ -1,5 +1,8 @@
 class WebMessagesController < ApplicationController
 
+  def index
+  end
+
   def inbound
     # action_type = params["type"]
     wm = WebMessage.new(web_message_params)

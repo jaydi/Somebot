@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  post 'web_messages' => 'web_messages#inbound'
-  get 'web_messages' => 'web_messages#outbound'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
+
+  post 'web_messages' => 'web_messages#inbound'
+  get 'web_messages' => 'web_messages#outbound'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
