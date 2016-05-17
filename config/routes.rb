@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   root 'web_messages#index'
 
   post 'web_messages' => 'web_messages#inbound'
-  get 'web_messages' => 'web_messages#outbound'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
