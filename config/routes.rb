@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'web_messages#index'
 
   post 'web_messages' => 'web_messages#inbound'
   get 'web_messages' => 'web_messages#outbound'
