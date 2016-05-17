@@ -1,20 +1,27 @@
 default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
-development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8mb4
+  reconnect: true
+  pool: 32
 
 test:
-  <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
+
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
 
 sandbox:
   <<: *default
-  database: db/sandbox.sqlite3
+  username: root
+  password: dlqlwkfhrksek!!
+  host: localhost
+  database: ibiza_sandbox
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  username: root
+  password: dlqlwkfhrksek!!
+  host: localhost
+  database: ibiza_production
