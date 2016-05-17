@@ -1,7 +1,4 @@
 defaults: &defaults
-  api_base_url: http://kabot.daumkakao.io/sandbox/v1
-  bot_id: 220
-  access_token: c1403387587cdbfccf7e5d25d63918a9ea00773e09f04eb87c2a4413a0f8d531
 
 development:
   <<: *defaults
@@ -11,7 +8,12 @@ test:
 
 sandbox:
   <<: *defaults
+  api_base_url: http://kabot.daumkakao.io/sandbox/v1
+  bot_id: 220
+  access_token: c1403387587cdbfccf7e5d25d63918a9ea00773e09f04eb87c2a4413a0f8d531
 
 production:
   <<: *defaults
   api_base_url: http://kabot.daumkakao.io/v1
+  bot_id: 55
+  access_token: 5d6e9d253bf7885fecf51f79b9513e78fdde5436ec193eb9cae20bb971e270da
