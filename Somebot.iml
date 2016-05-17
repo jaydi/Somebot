@@ -56,7 +56,7 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.0.0, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.8.4, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.12.0, rbenv: 2.2.3) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.4.4, rbenv: 2.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.3.21, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.6.7.2, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.4.0, rbenv: 2.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.6.4, rbenv: 2.2.3) [gem]" level="application" />
