@@ -5,8 +5,8 @@ module Ibiza
 
       def body(user, msg)
         params = {
-          msg_id: user.last_msg_id,
-          chat_key: user.last_chat_key,
+          msg_id: user.last_msg_id.to_i,
+          chat_key: user.last_chat_key.to_i,
           msg_type: 'text',
           text: msg
         }

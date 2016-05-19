@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20160517031210) do
   add_index "arrows", ["origin"], name: "index_arrows_on_origin"
 
   create_table "users", force: :cascade do |t|
-    t.string   "account_id",                           null: false
-    t.integer  "user_key",      limit: 8,              null: false
-    t.integer  "last_chat_key", limit: 8,              null: false
-    t.integer  "last_msg_id",   limit: 8,              null: false
-    t.integer  "status",                  default: 10, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "account_id",                 null: false
+    t.string   "user_key",                   null: false
+    t.string   "last_chat_key",              null: false
+    t.string   "last_msg_id",                null: false
+    t.integer  "status",        default: 10, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id"
@@ -39,14 +39,14 @@ ActiveRecord::Schema.define(version: 20160517031210) do
   add_index "users", ["user_key"], name: "index_users_on_user_key"
 
   create_table "web_messages", force: :cascade do |t|
-    t.string   "msg_type",             null: false
-    t.integer  "msg_id",     limit: 8, null: false
-    t.integer  "user_key",   limit: 8, null: false
-    t.integer  "chat_key",   limit: 8, null: false
-    t.text     "text",                 null: false
-    t.integer  "bound",                null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "msg_type",   null: false
+    t.string   "msg_id",     null: false
+    t.string   "user_key",   null: false
+    t.string   "chat_key",   null: false
+    t.text     "text",       null: false
+    t.integer  "bound",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "web_messages", ["chat_key"], name: "index_web_messages_on_chat_key"
