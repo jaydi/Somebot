@@ -18,6 +18,10 @@ class WebMessage < ActiveRecord::Base
         Ibiza::SomebotWorker.unarrow(user, args)
       when '체크'
         Ibiza::SomebotWorker.status_check(user)
+      when '전달'
+        Ibiza::SomebotWorker.deliver_message(user, args)
+      when '질문'
+        Ibiza::SomebotWorker.ask_question(user, args)
       else
         Ibiza::SomebotWorker.help(user)
     end
