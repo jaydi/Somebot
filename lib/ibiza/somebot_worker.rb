@@ -85,7 +85,7 @@ module Ibiza
 
       def status_check(user)
         if user.registered? and user.active?
-          sent_arrows = Arrow.where(origin: user.account_id, status: :interested)
+          sent_arrows = Arrow.where(origin: user.account_id, status: Arrow.statuses[:interested])
           gotten_arrows_count = Arrow.where(destination: user.account_id, status: Arrow.statuses[:interested]).count
 
           msg = "#{user.account_id}\n\n"
