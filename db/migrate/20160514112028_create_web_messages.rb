@@ -2,9 +2,9 @@ class CreateWebMessages < ActiveRecord::Migration
   def change
     create_table :web_messages do |t|
       t.string :msg_type, null: false
-      t.integer :msg_id, limit: 20, index: true, null: false
-      t.integer :user_key, limit: 20, index: true, null: false
-      t.integer :chat_key, limit: 20, index: true, null: false
+      t.column :msg_id, 'BIGINT UNSIGNED', index: true, null: false
+      t.column :user_key, 'BIGINT UNSIGNED', index: true, null: false
+      t.column :chat_key, 'BIGINT UNSIGNED', index: true, null: false
       t.text :text, null: false
       t.integer :bound, null: false
 
