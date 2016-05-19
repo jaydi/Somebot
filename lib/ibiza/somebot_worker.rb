@@ -9,7 +9,10 @@ module Ibiza
       target_id_parameter_needed: "상대방 카카오 아이디를 입력하세요.",
       arrow_exists: "이미 관심설정된 대상",
       arrow_not_exists: "관심설정 대상없음",
-      already_not_interested: "이미 해제된 대상"
+      already_not_interested: "이미 해제된 대상",
+      target_needed: "전달할 대상을 입력하세요.",
+      message_text_needed: "전달할 메시지를 입력하세요.",
+      no_such_target: "등록되지 않은 사용자입니다."
     }
 
     class << self
@@ -83,7 +86,7 @@ module Ibiza
       def status_check(user)
         if user.registered? and user.active?
           sent_arrows = Arrow.where(origin: user.account_id, status: :interested)
-          gotten_arrows_count = Arrow.where(destination: user.account_id, status: :interested).count
+          gotten_arrows_count = Arrow.where(destination: user.account_id, status: Arrow.statuses[:interested]).count
 
           msg = "#{user.account_id}\n\n"
           msg << "나의 관심 리스트\n"
@@ -91,8 +94,10 @@ module Ibiza
             msg << "#{sa.destination}\n"
           end
           msg << "\n"
-          msg << "나에게 관심있는 사람\n"
-          msg << "#{gotten_arrows_count}명"
+          msg << "나에게 관심있는 사람: #{gotten_arrows_count}명\n"
+          gotten_arrows_count.times do |c|
+            msg << "관심#{c + 1}\n"
+          end
 
           send_message(user, msg)
         else
@@ -102,6 +107,49 @@ module Ibiza
 
       def help(user)
         send_message(user, '사용법')
+      end
+
+      def deliver_message(user, args)
+        target_account_id = args[0]
+        msg = args[1]
+        if target_account_id.blank?
+          error_message(user, :target_needed)
+        elsif msg.blank?
+          error_message(user, :message_text_needed)
+        elsif user.registered? and user.active?
+          target = User.find_by_account_id(target_account_id)
+          if target.blank? or !target.active?
+            error_message(user, :no_such_target)
+          else
+            send_message(target, "익명메시지: #{msg}")
+            send_message(user, "메시지를 전달했습니다.")
+          end
+        else
+          error_message(user, :register_needed)
+        end
+      end
+
+      def ask_question(user, args)
+        target_name = args[0]
+        msg = args[1]
+        if target_name.blank?
+          error_message(user, :target_needed)
+        elsif msg.blank?
+          error_message(user, :message_text_needed)
+        elsif user.registered? and user.active?
+          target_index = target_name[2..-1].to_i
+          arrow_of_target = Arrow.where(destination: user.account_id, status: Arrow.statuses[:interested])[target_index - 1] if target_index > 0
+          if arrow_of_target.blank?
+            error_message(user, :no_such_target)
+          else
+            target = User.find_by_account_id(arrow_of_target.origin)
+            send_message(target, "#{user.account_id}님의 질문: #{msg}")
+            send_message(target, "답장하고 싶다면\n#전달 #{user.account_id} [메시지]")
+            send_message(user, "질문을 전달했습니다.")
+          end
+        else
+          error_message(user, :register_needed)
+        end
       end
 
       private
