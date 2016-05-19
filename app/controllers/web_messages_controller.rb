@@ -7,6 +7,10 @@ class WebMessagesController < ApplicationController
   def inbound
     # action_type = params["type"]
     wm = WebMessage.new(web_message_params)
+    if wm.text.starts_with?("#")
+      wm.text = wm.text[1..-1]
+    end
+
     if wm.save!
       WebMessageHandlingJob.perform_later(wm.id)
 
