@@ -55,7 +55,7 @@ class WebMessage < ActiveRecord::Base
 
   def msg
     @params ||= text.split(' ')
-    @args ||= @params.drop(1)
+    @args ||= @params.drop(2)
     @msg = @args.join(' ')
     @msg
   end

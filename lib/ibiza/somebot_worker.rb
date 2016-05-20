@@ -106,12 +106,15 @@ module Ibiza
       end
 
       def help(user)
-        send_message(user, '사용법')
+        help_msg = '==사용법==\n1. 등록하기\n#등록 [아이디]\n2. 탈퇴하기\n#탈퇴\n3. 관심있는 상대방 설정하기\n#관심설정 [상대방 아이디]\n'
+        help_msg << '4. 관심설정된 사람을 해제하기\n#관심해제 [상대방 아이디]\n5. 내 상태 체크하기\n#체크\n6. 내게 관심있는 사람에게 질문하기\n'
+        help_msg << '#질문 [상대방] [질문내용]\nex) #질문 관심2 저를 어떻게 아시나요?\n7. 익명으로 메시지 보내기\n#전달 [상대방 아이디] [메시지]'
+        send_message(user, help_msg)
       end
 
       def deliver_message(user, args)
         target_account_id = args[0]
-        msg = args[1]
+        msg = args.drop(1).join(' ')
         if target_account_id.blank?
           error_message(user, :target_needed)
         elsif msg.blank?
@@ -131,7 +134,7 @@ module Ibiza
 
       def ask_question(user, args)
         target_name = args[0]
-        msg = args[1]
+        msg = args.drop(1).join(' ')
         if target_name.blank?
           error_message(user, :target_needed)
         elsif msg.blank?
