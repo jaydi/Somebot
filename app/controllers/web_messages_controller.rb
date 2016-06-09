@@ -1,6 +1,5 @@
 class WebMessagesController < ApplicationController
 
-
   def index
   end
 
