@@ -12,7 +12,6 @@ class WebMessagesController < ApplicationController
 
     if wm.save!
       WebMessageHandlingJob.perform_later(wm.id)
-
       render :nothing => true, :status => 200
     else
       render :nothing => true, :status => 500
