@@ -19,7 +19,8 @@ class WebMessagesController < ApplicationController
   end
 
   def test
-    Ibiza::HttpPersistent.post("https://www.metabot.tk/payments/#{params[:payment_id]}/callback", {}, Ibiza::HTTPHeaders::JSON)
+    render nothing: true, status: :ok
+    TestJob.perform_later(params[:payment_id])
   end
 
   private
