@@ -3,8 +3,8 @@ require 'httpclient'
 module Ibiza
   class HttpPersistent
     @@http = HTTPClient.new
-    @@http.connect_timeout = 2
-    @@http.receive_timeout = 3
+    @@http.connect_timeout = 5
+    @@http.receive_timeout = 5
 
     def self.get(url, headers = nil)
       response = nil
