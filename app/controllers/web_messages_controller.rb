@@ -18,6 +18,10 @@ class WebMessagesController < ApplicationController
     end
   end
 
+  def test
+    Ibiza::HttpPersistent.post("https://www.metabot.tk/payments/#{params[:payment_id]}/callback", {}, Ibiza::HTTPHeaders::JSON)
+  end
+
   private
 
   def web_message_params
